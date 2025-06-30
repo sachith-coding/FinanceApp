@@ -1,0 +1,5 @@
+.vs/
+bin/
+obj/
+FinanceApp.csproj.user
+*.suo
