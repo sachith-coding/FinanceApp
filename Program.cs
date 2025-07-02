@@ -1,5 +1,6 @@
-using FinanceApp.Data;
+﻿using FinanceApp.Data;
 using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using System;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,8 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<FinanceAppContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
+    options.UseMySql(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        new MySqlServerVersion(new Version(8, 4, 5)) // ← your version
+    ));
 
 var app = builder.Build();
 
