@@ -5,8 +5,10 @@ namespace FinanceApp.Data
 {
     public class FinanceAppContext : DbContext
     {
+        // Bridge between Database and the Project
+
         public FinanceAppContext(DbContextOptions<FinanceAppContext> options): base(options) { }
 
-        DbSet<Expense> Expenses { get; set; } // table of the DB
+        public DbSet<Expense> Expenses { get; set; } // table of the DB
     }
 }
