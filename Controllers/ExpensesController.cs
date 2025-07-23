@@ -1,4 +1,5 @@
 ﻿using FinanceApp.Data;
+using FinanceApp.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinanceApp.Controllers
@@ -16,6 +17,23 @@ namespace FinanceApp.Controllers
         {
             var expenses = _Context.Expenses.ToList();
             return View(expenses);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Create(Expense expense)
+        {
+            if (ModelState.IsValid)
+            {
+                _Context.Expenses.Add(expense);
+                _Context.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            return View(expense);
         }
     }
 }
