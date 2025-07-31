@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using System;
 using System.Text;
+using FinanceApp.Data.Services.UserAuth;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,7 @@ builder.Services.AddDbContext<FinanceAppContext>(options =>
     ));
 
 builder.Services.AddScoped<IExpenseService, ExpenseService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 // 🛡️ Add JWT Authentication
 var jwtKey = builder.Configuration["Jwt:Key"];
